@@ -1,29 +1,41 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Person from './Person/Person.js';
 
-class App extends Component {
+const app = props => {
 
-  state={
+  const [personsState , setPersonsState] = useState({
     persons:[
         {name:"Mukesh shah",age:40},
-        {name:"Mehul CHavada",age:30},
+        {name:"Mehul CHavada",age:30,hob:
+        {
+           priority:['FINANCE , ', 'SHARE , ', 'MUTUAL FUND']
+         }},
         {name:"Ami Parekh",age:26}
        ]
-  }
+  });
 
-  switchNameHandler =()=>{
+const [otherState , setOtherState] = useState('Some Other Value');
+console.log(personsState,otherState);
+
+  const switchNameHandler =()=>{
     console.log('BUtton is PRessed.');
-    this.setState({
-      persons:[
+    setPersonsState({
+      persons : [
         {name:"Ankit THakor",age:22},
-        {name:"Nirali Parmar",age:19},
+        {name:"Nirali Parmar",age:19,hob:
+         {
+            priority:[]
+          }
+      },
         {name:"Mitul",age:27}
        ]
-    })
-  }
-  render() {
+    });
+  };
+
+  
+
     return (
       <div className="App">
         <header className="App-header">
@@ -34,10 +46,13 @@ class App extends Component {
         
          <h1 className="App-intro"> React JS App </h1>
          <p>React App learning..let's get started. </p>
-         <button onClick={this.switchNameHandler}>Switch Names</button>
-         <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
-         <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>Hobbies: Music</Person>
-         <Person name={this.state.persons[2].name} age={this.state.persons[2].age}/>
+         <button onClick={switchNameHandler}>Switch Names</button>
+         <Person name={personsState.persons[0].name} age={personsState.persons[0].age}/>
+         <Person 
+            name={personsState.persons[1].name} 
+            age={personsState.persons[1].age}>
+            Hobbies: {personsState.persons[1].hob.priority} </Person>
+         <Person name={personsState.persons[2].name} age={personsState.persons[2].age}/>
           
       </div> 
      
@@ -45,6 +60,9 @@ class App extends Component {
 
     //return React.createElement('div',{className:'App'},React.createElement('h1',null,'Hi,I\'m learning React'));
   }
-}
 
-export default App;
+
+export default app;
+
+
+
