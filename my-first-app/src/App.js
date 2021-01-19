@@ -19,11 +19,11 @@ const app = props => {
 const [otherState , setOtherState] = useState('Some Other Value');
 console.log(personsState,otherState);
 
-  const switchNameHandler =()=>{
+  const switchNameHandler =(newName)=>{
     console.log('BUtton is PRessed.');
     setPersonsState({
       persons : [
-        {name:"Ankit THakor",age:22},
+        {name:newName,age:22},
         {name:"Nirali Parmar",age:19,hob:
          {
             priority:[]
@@ -46,13 +46,18 @@ console.log(personsState,otherState);
         
          <h1 className="App-intro"> React JS App </h1>
          <p>React App learning..let's get started. </p>
-         <button onClick={switchNameHandler}>Switch Names</button>
-         <Person name={personsState.persons[0].name} age={personsState.persons[0].age}/>
+         <button onClick={switchNameHandler.bind(this,'Ankit Thakor')}>Switch Names</button>
+         <Person 
+              name={personsState.persons[0].name} 
+              age={personsState.persons[0].age}/>
          <Person 
             name={personsState.persons[1].name} 
-            age={personsState.persons[1].age}>
+            age={personsState.persons[1].age}
+            click={switchNameHandler.bind(this,'Ankit')}>
             Hobbies: {personsState.persons[1].hob.priority} </Person>
-         <Person name={personsState.persons[2].name} age={personsState.persons[2].age}/>
+         <Person 
+            name={personsState.persons[2].name} 
+            age={personsState.persons[2].age}/>
           
       </div> 
      
