@@ -34,6 +34,20 @@ console.log(personsState,otherState);
     });
   };
 
+
+  const nameChangedHandler = (event) => {
+    setPersonsState({
+      persons : [
+        {name:'Ankit',age:22},
+        {name:event.target.value,age:19,hob:
+         {
+            priority:[]
+          }
+      },
+        {name:"Mitul",age:27}
+       ]
+    });
+  }
   
 
     return (
@@ -53,7 +67,8 @@ console.log(personsState,otherState);
          <Person 
             name={personsState.persons[1].name} 
             age={personsState.persons[1].age}
-            click={switchNameHandler.bind(this,'Ankit')}>
+            click={switchNameHandler.bind(this,'Ankit')}
+            changed={nameChangedHandler}>
             Hobbies: {personsState.persons[1].hob.priority} </Person>
          <Person 
             name={personsState.persons[2].name} 
