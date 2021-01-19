@@ -5,6 +5,15 @@ import Person from './Person/Person.js';
 
 const app = props => {
 
+  const style = {
+    backgroundColor: 'White',
+    border: '1px solid blue',
+    font: 'inherit',
+    padding: '8px',
+    cursor: 'pointer'
+
+  };
+
   const [personsState , setPersonsState] = useState({
     persons:[
         {name:"Mukesh shah",age:40},
@@ -60,7 +69,9 @@ console.log(personsState,otherState);
         
          <h1 className="App-intro"> React JS App </h1>
          <p>React App learning..let's get started. </p>
-         <button onClick={switchNameHandler.bind(this,'Ankit Thakor')}>Switch Names</button>
+         <button 
+              style={style}
+              onClick={switchNameHandler.bind(this,'Ankit Thakor')}>Switch Names</button>
          <Person 
               name={personsState.persons[0].name} 
               age={personsState.persons[0].age}/>
