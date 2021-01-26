@@ -65,19 +65,11 @@ class App extends Component {
                 cursor: 'pointer'
 
               };
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1 className="App-title">React JS</h1>
-      </header>
-      <h1 className="App-intro"> React JS App </h1>
-      <p>React App learning..let's get started. </p>
-       <button
-            style={style}
-             onClick={this.togglePersonsHandler}>Toggle Persons</button>
-             {
-               this.state.showPersons === true ?
+
+              let person = null;
+              if (this.state.showPersons) {
+              
+                person =(
                 <div>
                 <Person
                   name={this.state.persons[0].name}
@@ -91,8 +83,23 @@ class App extends Component {
                 <Person
                   name={this.state.persons[2].name}
                   age={this.state.persons[2].age} />
-              </div> : null
-             }
+              </div> );
+
+              }
+
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <h1 className="App-title">React JS</h1>
+      </header>
+      <h1 className="App-intro"> React JS App </h1>
+      <p>React App learning..let's get started. </p>
+       <button
+            style={style}
+             onClick={this.togglePersonsHandler}>Toggle Persons</button>
+             
+             {person}
              
             </div>
 
