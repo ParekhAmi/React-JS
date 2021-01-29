@@ -1,8 +1,21 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import styled from 'styled-components';
 import './App.css';
 import Person from './Person/Person.js';
 
+const StyledButton = styled.button`
+          background-color: green;
+          color: white;
+          border: 1px solid blue;
+          font: inherit;
+          padding: 8px;
+          cursor: pointer
+          &:hover {
+            background-color: lightgreen;
+            color: black;  
+          }
+`;
 
 class App extends Component {
 
@@ -107,9 +120,9 @@ class App extends Component {
         </header>
         <h1 className="App-intro"> React JS App </h1>
         <p className={classes.join(' ')}>React App learning..let's get started. </p>
-        <button
-          style={style}
-          onClick={this.togglePersonsHandler}>Toggle Persons</button>
+
+        <StyledButton onClick={this.togglePersonsHandler}>Toggle Persons
+        </StyledButton>
 
         {person}
 
