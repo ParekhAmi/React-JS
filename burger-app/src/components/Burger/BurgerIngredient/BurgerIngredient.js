@@ -24,10 +24,13 @@ class BurgerIngredient extends Component {
                 break;
             case ('salad'): ingredient = (<div class="Salad"></div>);
                 break;
-            default:
+            case ('bacon'): ingredient = (<div class="Bacon"></div>);
+                break;
+         
+                default:
                 ingredient = null;
         }
-        console.log('Before Return ' ,ingredient);
+     //   console.log('Before Return ' ,ingredient);
         return ingredient;
     }
 }
