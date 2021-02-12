@@ -12,7 +12,7 @@ const controls = [
 const buildControls = (props) => (
 
     <div class="BuildControls">
-        <p>Current Price : {props.price}</p>
+        <p>Current Price : {props.price.toFixed(2)}</p>
 
         {controls.map(ctrl => (
             <BuildControl
@@ -23,11 +23,14 @@ const buildControls = (props) => (
                 added={() => props.ingredientAdded(ctrl.type)}
                 removed={() => props.ingredientRemoved(ctrl.type)}
                 newItemCount={props.newItemCount[ctrl.type]}
-
             />
         ))}
 
-        <p>totalAllItemPrice: {props.itemPrice}</p>
+        <p>totalAllItemPrice: {props.itemPrice.toFixed(2)}</p>
+
+        <button 
+        class=".OrderButton"
+        disabled={!props.purchasable}>ORDER NOW</button>
 
     </div>
 );
