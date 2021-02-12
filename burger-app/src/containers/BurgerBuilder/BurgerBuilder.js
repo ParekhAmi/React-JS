@@ -11,7 +11,7 @@ const INGREDIENT_PRICES = {
 };
 
 
-class BurgerBuilder extends Component {    
+class BurgerBuilder extends Component {
     state = {
         ingredients: {
             salad: 0,
@@ -21,10 +21,21 @@ class BurgerBuilder extends Component {
         },
         totalPrice: 4,
         itemCount: 0,
-        itemPrice:0
+        itemPrice: 0,
+        purchasable: false
     }
 
-    
+    updatePurchaseState(ingredients) {
+        
+        const sum = Object.keys(ingredients)
+        .map(igKey => {
+                return ingredients[igKey];
+            }).reduce((sum,el) => {
+                return sum + el;
+            },0);
+            this.setState({purchasable: sum > 0});
+    }
+
     addIngredientHandler = (type) => {
         const oldCount = this.state.ingredients[type];
         const updateCount = oldCount + 1;
@@ -42,9 +53,9 @@ class BurgerBuilder extends Component {
         const newPrice = oldPrice + priceAddition;
         const itemOldPrice = this.state.itemPrice;
         const itemNewPrice = itemOldPrice + priceAddition;
-     
-        this.setState({ totalPrice: newPrice, itemPrice:itemNewPrice, ingredients: updatedIngredients ,itemCount: newItemCount});      
 
+        this.setState({ totalPrice: newPrice, itemPrice: itemNewPrice, ingredients: updatedIngredients, itemCount: newItemCount });
+        this.updatePurchaseState(updatedIngredients);
     }
 
     removeIngredientHandler = (type) => {
@@ -60,37 +71,40 @@ class BurgerBuilder extends Component {
         const newItemCount = {
             ...this.state.itemCount
         };
-         newItemCount[type] = updateCount;
+        newItemCount[type] = updateCount;
         const priceDeduction = INGREDIENT_PRICES[type];
         const oldPrice = this.state.totalPrice;
         const newPrice = oldPrice - priceDeduction;
-        this.setState({ totalPrice: newPrice, ingredients: updatedIngredients, itemCount: newItemCount});
+        const itemOldPrice = this.state.itemPrice;
+        const itemNewPrice = itemOldPrice - priceDeduction;
+        this.setState({ totalPrice: newPrice, itemPrice: itemNewPrice, ingredients: updatedIngredients, itemCount: newItemCount });
+        this.updatePurchaseState(updatedIngredients);
     }
 
 
 
     render() {
 
-        const disableInfo={
-                ...this.state.ingredients
+        const disableInfo = {
+            ...this.state.ingredients
         };
 
-        for(let key in disableInfo)
-        {
-            disableInfo[key] = disableInfo[key]<=0
+        for (let key in disableInfo) {
+            disableInfo[key] = disableInfo[key] <= 0
         }
         return (
-            
+
             <Aux>
                 <Burger ingredients={this.state.ingredients} />
-                <BuildControls 
-                ingredientAdded = {this.addIngredientHandler} 
-                ingredientRemoved = {this.removeIngredientHandler}
-                disabled={disableInfo}
-                price={this.state.totalPrice}
-                iprice ={INGREDIENT_PRICES}  
-                newItemCount = {this.state.itemCount} 
-                itemPrice = {this.state.itemPrice}
+                <BuildControls
+                    ingredientAdded={this.addIngredientHandler}
+                    ingredientRemoved={this.removeIngredientHandler}
+                    disabled={disableInfo}
+                    purchasable={this.state.purchasable}
+                    price={this.state.totalPrice}
+                    iprice={INGREDIENT_PRICES}
+                    newItemCount={this.state.itemCount}
+                    itemPrice={this.state.itemPrice}
                 />
             </Aux>
         );
