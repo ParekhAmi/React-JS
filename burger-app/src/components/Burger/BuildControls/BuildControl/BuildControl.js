@@ -10,7 +10,7 @@ const buildControl = (props) => (
         <button class="Less" disabled={props.disabled} onClick={props.removed}>Less</button>
         <button class="More" onClick={props.added}>More</button>
         Item Count: {props.newItemCount}
-        Total Price: {props.newItemCount * props.iprice}
+        Total Price: {(props.newItemCount * props.iprice).toFixed(2)}
 
 
     </div>
