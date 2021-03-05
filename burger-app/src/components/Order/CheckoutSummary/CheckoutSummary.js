@@ -2,6 +2,7 @@ import React from 'react';
 import './CheckoutSummary.css';
 import Burger from '../../Burger/Burger';
 import Button from '../../UI/Button/Button';
+
 const checkoutsummary = (props)=>{
         return(
             <div class="CheckoutSummary">
@@ -11,7 +12,7 @@ const checkoutsummary = (props)=>{
                     <Button 
                         Name="Button Danger"
                         clicked={props.checkoutCancelled}
-                            >CANCLE</Button>
+                            >CANCEL</Button>
                     <Button 
                         Name="Button Success"
                         clicked={props.checkoutContinued}
