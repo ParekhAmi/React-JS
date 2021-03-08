@@ -9,7 +9,7 @@ import Input from '../../../components/UI/Input/Input';
 class ContactData extends Component {
     state = {
         orderForm: {
-           
+
             name: {
                 elementType: 'input',
                 elementConfig: {
@@ -17,7 +17,7 @@ class ContactData extends Component {
                     placeholder: 'Your Name'
                 },
                 value: ''
-            },  
+            },
             street: {
                 elementType: 'input',
                 elementConfig: {
@@ -41,7 +41,7 @@ class ContactData extends Component {
                     placeholder: 'Country'
                 },
                 value: ''
-            },    
+            },
             email: {
                 elementType: 'input',
                 elementConfig: {
@@ -52,10 +52,12 @@ class ContactData extends Component {
             },
             deliveryMethod: {
                 elementType: 'select',
-                options: [
-                    {value: 'fastest', displayValue: 'Fastest'},
-                    {value: 'cheapest', displayValue: 'Cheapest'}
-                ],
+                elementConfig: {
+                    options: [
+                        { value: 'fastest', displayValue: 'Fastest' },
+                        { value: 'cheapest', displayValue: 'Cheapest' }
+                    ],
+                },
                 value: ''
             }
         },
@@ -86,13 +88,36 @@ class ContactData extends Component {
                 this.setState({ loading: false });
             });
     }
+    inputChangedHandler = (event, inputIdentifier) => {
+        const updatedOrderForm = {
+            ...this.state.orderForm
+        };
+        const updatedFormElement = {
+            ...updatedOrderForm[inputIdentifier]
+        };
+        updatedFormElement.value = event.target.value;
+        updatedOrderForm[inputIdentifier] = updatedFormElement;
+        this.setState({orderForm: updatedOrderForm});
+    }
     render() {
+        const formElementsArray = [];
+        for (let key in this.state.orderForm) {
+            formElementsArray.push(
+                {
+                    id: key,
+                    config: this.state.orderForm[key]
+                });
+        }
         let form = (
             <form>
-                <Input elementType="..." elementConfig="..." value="..." />
-                <Input inputtype="input" type="email" name="email" placeholder="Your Email" />
-                <Input inputtype="input" type="text" name="street" placeholder="Street" />
-                <Input inputtype="input" type="text" name="postalcode" placeholder="PostalCode" />
+                {formElementsArray.map(formElement => (
+                    <Input
+                        key={formElement.id}
+                        elementType={formElement.config.elementType}
+                        elementConfig={formElement.config.elementConfig}
+                        value={formElement.config.value} 
+                        changed={(event) => this.inputChangedHandler(event, formElement.id)}/>
+                ))}
                 <Button Name="Button Success" clicked={this.orderHandler}>Order</Button>
             </form>
         );
