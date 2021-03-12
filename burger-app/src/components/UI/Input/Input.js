@@ -4,11 +4,16 @@ import './Input.css';
 const Input = (props) => {
 
     let inputElement = null;
+    const inputClasses = ['InputElement'];
 
+    if(props.invalid && props.shouldValidate && props.touched)
+    {
+        inputClasses.push('Invalid');
+    }
     switch (props.elementType) {
         case ('input'):
             inputElement = <input
-                class="InputElement"
+                class={inputClasses.join(' ')}
                 {...props.elementConfig}
                 value={props.value}
                 onChange={props.changed} />
