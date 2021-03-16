@@ -1,0 +1,10 @@
+.Addlist {
+    border: 1px solid black;
+    border-radius: 3px 3px;
+    box-shadow:2px 3px lightgreen;
+    margin: 20px auto;
+    padding: 5px;
+    width: 230px;
+    background-color: lightcyan;
+}
+

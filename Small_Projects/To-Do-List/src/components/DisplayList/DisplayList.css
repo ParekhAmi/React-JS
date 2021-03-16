@@ -1,0 +1,10 @@
+.DisplayList {
+    border: 1px solid black;
+    box-shadow: 2px 3px grey;
+    border-radius: 3px 3px;
+    overflow: scroll;
+    margin: 5px auto;
+    padding: 5px;
+    width: 210px;
+    height: 210px;
+}
