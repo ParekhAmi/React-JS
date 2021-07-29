@@ -1,5 +1,30 @@
 .Cards {
     border: 1px solid black;
-    height: 50px;
-    width: 50px;
+    height: 200px;
+    width: 300px;
+    margin: 20%;
+}
+
+.Confirmed {
+    border: 1px solid black;
+    height: 100px;
+    width: 230px;
+    margin: 10%;
+    display: inline-block;
+}
+
+.Recovered {
+    border: 1px solid black;
+    height: 100px;
+    width: 230px;
+    margin: 10%;
+    display: inline-block;
+}
+
+.Deaths {
+    border: 1px solid black;
+    height: 100px;
+    width: 230px;
+    margin: 10%;
+    display: inline-block;
 }
