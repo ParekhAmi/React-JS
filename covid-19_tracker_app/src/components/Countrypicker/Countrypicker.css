@@ -1,8 +1,19 @@
 .Countrypicker {
     border: 1px solid green;
     border-radius: 3px 5px;
-    margin: 30%;
-    height: 10%;
-    width: 20%;
-    
+    margin: 50px;
+    height: 50px;
+    width: 250px; 
+    text-align: center; 
+    background-color: coral;
+}
+
+.Select {
+    border: 1px solid black;
+    font-family: 'Times New Roman';
+    font-weight: bold;
+    font-size: medium;
+    width: 170px;
+    height: 25px;
+    margin: 10px auto;    
 }

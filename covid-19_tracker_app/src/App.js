@@ -12,9 +12,8 @@ class App extends Component {
         <h1>Covid19 Tracker App</h1>
 
         
-        <Countrypicker>
-          <Cards />    
-        </Countrypicker>
+        <Countrypicker />
+        <Cards />    
         <Chart /> 
       </div>
     );

@@ -12,20 +12,19 @@ const Countrypicker = (props) => {
     axios.get('/countries')
         .then(res => {
             //console.log(res.data.countries);
-            setListCountries(listCountries => [...listCountries, res.data.countries]);
+
+            setListCountries(listCountries => [...listCountries, ...res.data.countries]);
         })
         .catch(error => {
             console.log(error);
         })
-
-    //console.log(listCountries);
 
     return (
 
         <div className='Countrypicker'>
 
             {
-                <select>
+                <select class='Select'>
                     {
                         listCountries.map(country => {
                             return (
@@ -35,7 +34,7 @@ const Countrypicker = (props) => {
                     }
                 </select>
             }
-            {props.children}
+
         </div>
 
     );
